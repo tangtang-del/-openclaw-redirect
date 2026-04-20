@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>正在跳转...</title>
+<style>
+body{display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;font-family:-apple-system,sans-serif;background:#f5f5f5}
+.card{background:#fff;padding:32px 24px;border-radius:12px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.08);max-width:320px;width:90%}
+h2{margin:0 0 16px;font-size:18px}
+p{margin:0 0 20px;color:#666;font-size:14px;line-height:1.6}
+.btn{display:inline-block;padding:10px 24px;background:#1677ff;color:#fff;border-radius:6px;text-decoration:none;font-size:14px}
+.btn:active{background:#0958d9}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>🌐 即将打开链接</h2>
+<p>点击下方按钮在浏览器中打开原文</p>
+<a id="link" class="btn" href="#">打开原文</a>
+</div>
+<script>
+(function(){
+  var params=new URLSearchParams(location.search);
+  var url=params.get('u');
+  if(!url){document.body.innerHTML='<p>无效的链接</p>';return;}
+  url=decodeURIComponent(url);
+  document.getElementById('link').href=url;
+  // 尝试直接在外部浏览器打开（非钉钉环境立即生效）
+  window.location.replace(url);
+})();
+</script>
+</body>
+</html>
